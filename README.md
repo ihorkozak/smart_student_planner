@@ -1,94 +1,79 @@
+```
 # Smart Student Planner
+
 A Django-based web application that helps students manage their academic courses, tasks, and deadlines effectively.
 
----
-
-##  Project Overview
+## Project Overview
 
 Smart Student Planner is designed for students who struggle with managing multiple courses and overlapping deadlines. The application provides a single place to organize courses, track assignments, and monitor study progress.
 
----
-
-##  Features
+## Features
 
 ### Must-Have Features
-- **User Authentication** - Registration, login, and logout
-- **Course Management** - Create, edit, and delete courses
-- **Task Management** - Create tasks with title, description, deadline, and priority
-- **Dashboard** - Overview of upcoming and overdue tasks
-- **Weather Integration** - Real-time weather based on your location
-- **Admin Panel** - Django admin panel for managing users and data
-- **Comments on Tasks** - Add notes to tasks
+- **User Authentication** — registration, login, and logout
+- **Course Management** — create, edit, and delete courses
+- **Task Management** — create tasks with title, description, deadline, and priority
+- **Dashboard** — overview of upcoming and overdue tasks
+- **Weather Integration** — real-time weather based on your location
+- **Admin Panel** — Django admin panel for managing users and data
+- **Comments on Tasks** — add notes to tasks
 
 ### Nice-to-Have Features
 - Task priority levels (low, medium, high)
 - Filtering and sorting tasks
 
----
 ### Project Structure & Class Diagram
-![](screenshot.png)
+![Project structure](screenshot.png)
 
----
-
-##  Setup Instructions
+## Setup Instructions
 
 ### Clone the Repository
-
 ```bash
-git clone https://github.com/IMC-UAS-Krems/assignment-2-ihorkozak
-cd TaskManager
+git clone https://github.com/ihorkozak/smart_student_planner.git
+cd smart_student_planner
 ```
 
 ### Create a Python Virtual Environment
 
-#### On Windows (PowerShell):
+**Windows (PowerShell):**
 ```bash
 python -m venv venv
 venv\Scripts\activate
 ```
 
-#### On macOS / Linux:
+**macOS / Linux:**
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
 ### Install Dependencies
-
 ```bash
 pip install -r requirements.txt
 ```
 
-### Run Migrations
+### Configure Environment Variables
+Create a `.env` file in the project root: OPENWEATHER_API_KEY=your_api_key_here
 
+### Run Migrations
 ```bash
 python manage.py migrate
 ```
 
 ### Start the Server
-
 ```bash
 python manage.py runserver
 ```
 
 ### Open in Browser
 http://127.0.0.1:8000/
----
-
 
 ## Running Tests
-
-## Test Users
-- Admin: username `admin`, password `imc-admin`
-- User: username `user1`, password `imc-user`
-- User: username `kozak`, password `!12345qwert`
-### Run All Tests
 ```bash
 pytest planner/tests.py -v
 ```
----
 
-##  Features Overview
+## Features Overview
 
 ### Dashboard
 - Shows upcoming tasks sorted by deadline
@@ -115,19 +100,13 @@ pytest planner/tests.py -v
 - Automatically detects your city by IP
 - Shows temperature and weather condition
 
-
----
-
-##  Technologies
-
+## Technologies
 - **Language:** Python 3.13
 - **Framework:** Django 6.0
 - **Database:** SQLite
 - **API:** OpenWeather API
 - **Testing:** pytest
 
----
-
 ## Demo
-
-YouTube video: https://youtu.be/1JdMLHLZgYA
+[YouTube walkthrough](https://youtu.be/1JdMLHLZgYA)
+```
