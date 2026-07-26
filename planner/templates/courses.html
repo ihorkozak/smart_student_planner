@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>My Courses</h2>
+    <a href="/courses/create/" class="btn btn-primary">+ Add Course</a>
+    <br><br>
+
+    {% for course in courses %}
+        <div class="card">
+            <h3>{{ course.name }}</h3>
+            <p>👨‍🏫 Instructor: {{ course.instructor }}</p>
+            <p>🕐 Schedule: {{ course.schedule }}</p>
+            <br>
+            <a href="/courses/delete/{{ course.id }}/" class="btn btn-danger">Delete</a>
+        </div>
+    {% empty %}
+        <div class="card">
+            <p>No courses yet. Add your first course!</p>
+        </div>
+    {% endfor %}
+{% endblock %}

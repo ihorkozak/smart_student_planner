@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Weather</h2>
+    
+    <form method="get">
+        <input type="text" name="city" placeholder="Enter city" value="{{ city }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <div>
+        <h3>{{ weather.city }}</h3>
+        <p>Temperature: {{ weather.temperature }}°C</p>
+        <p>Condition: {{ weather.condition }}</p>
+        <p>Updated: {{ weather.fetched_at }}</p>
+    </div>
+
+    <a href="/dashboard/">Back to dashboard</a>
+{% endblock %}

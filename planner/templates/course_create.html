@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Add Course</h2>
+    <div class="card">
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Course name" required>
+            <input type="text" name="instructor" placeholder="Instructor" required>
+            <input type="text" name="schedule" placeholder="Schedule" required>
+            <button type="submit" class="btn btn-primary">Add Course</button>
+        </form>
+    </div>
+    <a href="/courses/" class="link-btn">Back to courses</a>
+{% endblock %}

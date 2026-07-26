@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Welcome, {{ request.user.username }}! 👋</h2>
+
+    {% if not upcoming_tasks and not overdue_tasks %}
+        <div class="card">
+            <p>👋 Start by adding a course, then create tasks for it!</p>
+            <br>
+            <a href="/courses/create/" class="btn btn-primary">+ Add Course</a>
+        </div>
+    {% endif %}
+
+    {% if overdue_tasks %}
+    <h3>⚠️ Overdue Tasks</h3>
+    {% for task in overdue_tasks %}
+        <div class="card overdue">
+            <a href="/tasks/{{ task.id }}/">{{ task.title }}</a>
+            <span class="tag-high"> — {{ task.deadline }}</span>
+        </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if upcoming_tasks %}
+    <h3>📅 Upcoming Tasks</h3>
+    {% for task in upcoming_tasks %}
+        <div class="card">
+            <a href="/tasks/{{ task.id }}/" class="task-title">{{ task.title }}</a>
+            — {{ task.deadline }} —
+            <span class="tag-{{ task.priority }}">{{ task.priority }}</span>
+        </div>
+    {% endfor %}
+    {% endif %}
+
+    <br>
+    <a href="/courses/" class="btn btn-primary">My Courses</a>
+    <a href="/tasks/create/" class="btn btn-primary">+ Add Task</a>
+{% endblock %}

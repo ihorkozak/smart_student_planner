@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Student Planner</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="/dashboard/">Dashboard</a>
+            <a href="/courses/">Courses</a>
+            <a href="/tasks/">Tasks</a>
+            <a href="/tags/">Tags</a>
+            <a href="/logout/">Logout</a>
+        </div>
+        {% if weather %}
+        <div class="weather-info">
+            📍 {{ weather.city }} | 🌡️ {{ weather.temperature }}°C | {{ weather.condition }}
+        </div>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

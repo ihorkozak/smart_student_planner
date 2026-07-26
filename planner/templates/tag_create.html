@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Add Tag</h2>
+    <div class="card">
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Tag name" required>
+            <button type="submit" class="btn btn-primary">Add Tag</button>
+        </form>
+    </div>
+    <a href="/tags/" class="link-btn">Back to tags</a>
+{% endblock %}

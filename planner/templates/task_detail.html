@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="/tasks/" class="btn btn-primary">← Back to Tasks</a>
+    <br><br>
+
+    <div class="card">
+        <h2>{{ task.title }}</h2>
+        <p>📚 Course: {{ task.course.name }}</p>
+        <p>⏰ Deadline: {{ task.deadline }}</p>
+        <p>Priority: <span class="tag-{{ task.priority }}">{{ task.priority }}</span></p>
+        <p>Status: {% if task.is_completed %} ✅ Done {% else %} ❌ Not done {% endif %}</p>
+        {% if task.description %}
+        <p>📝 {{ task.description }}</p>
+        {% endif %}
+        <p>🏷️ Tags:
+            {% for tasktag in task.tasktag_set.all %}
+                {{ tasktag.tag.name }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                No tags
+            {% endfor %}
+        </p>
+        <a href="/tasks/{{ task.id }}/add-tag/" class="btn btn-primary">+ Add Tag</a>
+        <br><br>
+        {% if not task.is_completed %}
+            <a href="/tasks/complete/{{ task.id }}/" class="btn btn-success">✅ Mark as done</a>
+        {% endif %}
+        <a href="/tasks/delete/{{ task.id }}/" class="btn btn-danger">🗑️ Delete</a>
+    </div>
+
+    <h3>💬 Comments</h3>
+
+    {% for comment in comments %}
+        <div class="card">
+            <p>{{ comment.content }}</p>
+        </div>
+    {% empty %}
+        <div class="card">
+            <p>No comments yet.</p>
+        </div>
+    {% endfor %}
+
+    <div class="card">
+        <h4>Add comment</h4>
+        <form method="post" action="/tasks/{{ task.id }}/comment/">
+            {% csrf_token %}
+            <textarea name="content" placeholder="Write a comment..." required></textarea>
+            <button type="submit" class="btn btn-primary">💬 Add Comment</button>
+        </form>
+    </div>
+{% endblock %}

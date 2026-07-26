@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Tags</h2>
+    <a href="/tags/create/" class="btn btn-primary">+ Add Tag</a>
+    <br><br>
+    {% for tag in tags %}
+        <div class="card">
+            <p>{{ tag.name }}</p>
+        </div>
+    {% empty %}
+        <div class="card">
+            <p>No tags yet.</p>
+        </div>
+    {% endfor %}
+{% endblock %}

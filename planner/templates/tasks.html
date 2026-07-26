@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>My Tasks</h2>
+    <a href="/tasks/create/" class="btn btn-primary">+ Add Task</a>
+    <br><br>
+
+    {% for task in tasks %}
+        <div class="card {% if task.is_completed %}completed{% endif %}">
+            <h3><a href="/tasks/{{ task.id }}/" class="task-title">{{ task.title }}</a></h3>
+            <p>📚 Course: {{ task.course.name }}</p>
+            <p>⏰ Deadline: {{ task.deadline }}</p>
+            <p>Priority: <span class="tag-{{ task.priority }}">{{ task.priority }}</span></p>
+            <p>Status: {% if task.is_completed %} ✅ Done {% else %} ❌ Not done {% endif %}</p>
+            <br>
+            {% if not task.is_completed %}
+                <a href="/tasks/complete/{{ task.id }}/" class="btn btn-success">Mark as done</a>
+            {% endif %}
+            <a href="/tasks/delete/{{ task.id }}/" class="btn btn-danger">Delete</a>
+        </div>
+    {% empty %}
+        <div class="card">
+            <p>No tasks yet. Add your first task!</p>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Add Task</h2>
+
+    {% if not courses %}
+        <div class="card">
+            <p>⚠️ You have no courses yet!</p>
+            <a href="/courses/create/" class="btn btn-primary">Add Course first</a>
+        </div>
+    {% else %}
+        <div class="card">
+            <form method="post">
+                {% csrf_token %}
+                <label>Title</label>
+                <input type="text" name="title" placeholder="Task title" required>
+
+                <label>Description</label>
+                <textarea name="description" placeholder="Description"></textarea>
+
+                <label>Deadline</label>
+                <input type="datetime-local" name="deadline" required>
+
+                <label>Priority</label>
+                <select name="priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+
+                <label>Course</label>
+                <select name="course">
+                    {% for course in courses %}
+                        <option value="{{ course.id }}">{{ course.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <br>
+                <button type="submit" class="btn btn-primary">Add Task</button>
+            </form>
+        </div>
+    {% endif %}
+
+    <br>
+    <a href="/tasks/" class="btn btn-primary">Back to tasks</a>
+{% endblock %}
