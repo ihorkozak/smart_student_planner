@@ -108,5 +108,4 @@ pytest planner/tests.py -v
 - **Testing:** pytest
 
 ## Demo
-[YouTube walkthrough](https://youtu.be/1JdMLHLZgYA)
-```
+Video of the Project functionallity: https://youtu.be/1JdMLHLZgYA
